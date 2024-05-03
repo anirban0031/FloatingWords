@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouncing Words</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.91);
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  .word {
+    position: absolute;
+    font-size: 30px;
+    padding: 24px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.2);
+    color: #FFFDDF;
+  }
+  .wrapWords{
+	position: relative;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapWords">
+  <!-- Words will be added here by the script -->
+</div>
+
+<script>
+  // List of words to display
+  const words = ['Creativity', 'Innovation', 'Inspiration', 'Adventure', 'Passion', 'Discovery', 'Dream', 'Journey', 'Success', 'Vision'];
+  const wordElements = [];
+  const wrapWordsDiv = document.querySelector('.wrapWords');
+
+  // Function to create word elements and append them to the body
+  function createWords() {
+    words.forEach(word => {
+      const wordElement = document.createElement('div');
+      wordElement.textContent = word;
+      wordElement.classList.add('word');
+      wrapWordsDiv.appendChild(wordElement);
+      wordElements.push(wordElement);
+    });
+  }
+
+  // Function to update the position of each word
+  function updatePosition() {
+    wordElements.forEach(wordElement => {
+      const x = parseFloat(wordElement.dataset.x) || 0;
+      const y = parseFloat(wordElement.dataset.y) || 0;
+      const vx = parseFloat(wordElement.dataset.vx) || (Math.random() * 2 - 1) * 2;
+      const vy = parseFloat(wordElement.dataset.vy) || (Math.random() * 2 - 1) * 2;
+
+      let newX = x + vx;
+      let newY = y + vy;
+
+      // Check for collision with walls and reverse velocity
+      if (newX < 0 || newX + wordElement.offsetWidth > window.innerWidth) {
+        wordElement.dataset.vx = -vx;
+        newX = x;
+      }
+      if (newY < 0 || newY + wordElement.offsetHeight > window.innerHeight) {
+        wordElement.dataset.vy = -vy;
+        newY = y;
+      }
+
+      // Update position
+      wordElement.style.transform = `translate(${newX}px, ${newY}px)`;
+      wordElement.dataset.x = newX;
+      wordElement.dataset.y = newY;
+    });
+  }
+
+  // Initialize words and start the animation
+  createWords();
+  setInterval(updatePosition, 50);
+
+</script>
+
+</body>
+</html>

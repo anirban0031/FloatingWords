@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Floating Words</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  .floating-word {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: float 5s ease-in-out infinite, sideWays 3s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes sideWays {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+  }
+</style>
+</head>
+<body>
+<script>
+  // Function to generate a random font size between 14px and 36px
+  function getRandomFontSize() {
+    return Math.floor(Math.random() * (36 - 14 + 1)) + 14 + 'px';
+  }
+
+  // Words to be displayed
+  const words = ['Creativity', 'Innovation', 'Inspiration', 'Adventure', 'Passion', 'Discovery', 'Dream', 'Journey', 'Success', 'Vision'];
+
+  // Add words to the body with random font sizes
+  words.forEach(word => {
+    const wordElement = document.createElement('div');
+    wordElement.classList.add('floating-word');
+    wordElement.textContent = word;
+    wordElement.style.fontSize = getRandomFontSize();
+    wordElement.style.top = Math.random() * 80 + '%';
+    wordElement.style.left = Math.random() * 80 + '%';
+    document.body.appendChild(wordElement);
+  });
+</script>
+</body>
+</html>

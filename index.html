@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stylish Floating Words</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  .floating-word {
+    position: absolute;
+    font-size: 2em;
+    color: #333;
+    animation: float 5s ease-in-out infinite, sideWays 3s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes sideWays {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+  }
+</style>
+</head>
+<body>
+<div class="floating-word" style="top: 10%; left: 5%;">Creativity</div>
+<div class="floating-word" style="top: 20%; right: 5%;">Innovation</div>
+<div class="floating-word" style="top: 30%; left: 10%;">Inspiration</div>
+<div class="floating-word" style="top: 40%; right: 10%;">Adventure</div>
+<div class="floating-word" style="top: 50%; left: 15%;">Passion</div>
+<div class="floating-word" style="top: 60%; right: 15%;">Discovery</div>
+<div class="floating-word" style="top: 70%; left: 20%;">Dream</div>
+<div class="floating-word" style="top: 80%; right: 20%;">Journey</div>
+<div class="floating-word" style="bottom: 10%; left: 25%;">Success</div>
+<div class="floating-word" style="bottom: 20%; right: 25%;">Vision</div>
+</body>
+</html>
